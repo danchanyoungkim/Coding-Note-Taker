@@ -16,7 +16,7 @@
   In order to make a specific tab for taking imperative notes on coding, I decided to create this note taker through mostly back-end coding.
   [Github Repo](https://github.com/danchanyoungkim/Coding-Note-Taker)
 
-  [Heroku Deployed]()
+  [Heroku Deployed](https://coding-note-taker.herokuapp.com/)
 
   ## Installation
   Copy the url and clone into the folder of your liking.
