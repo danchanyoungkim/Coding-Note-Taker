@@ -1,16 +1,27 @@
-const api = require('express').Router();
-const data = require('../db/db.json');
+const app = require('express').Router();
+const fs = require('fs');
+const data = JSON.parse(fs.readFileSync('./db/db.json', 'utf-8'));
 
-api.get('/notes', (req, res) => {
+app.get('/api/notes', (req, res) => {
     console.info(`${req.method} request received for notes.`);
     res.json(data);
 });
 
-// Post.
-api.post('/notes', (req, res) => {
-    console.info(`${req.method} request received to submit feedback`);
-    res.json(note);
-    data.push(req.body);
+app.get('/api/notes/:d', (req, res) => {
+    console.info(`${req.method} request received for notes.`);
+    res.json(data[Number(req.params.id)]);
 });
 
-module.exports = api;
+// Post.
+app.post('/api/notes', (req, res) => {
+    console.info(`${req.method} request received to submit feedback`);
+    res.json(data);
+    data.push(req.body);
+
+    fs.writeFileSync('./db/db.json', JSON.stringify(data), (err) => {
+        if (err)
+        return (err);
+    });
+});
+
+module.exports = app;
